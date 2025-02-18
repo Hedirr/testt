@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="C:\Users\Belar\Downloads" type="image/x-icon">
+  <title>Charchili</title>
+  <style>
+    body {
+      font-family: "Holiday", sans-serif;
+      text-align: center;
+      background: linear-gradient(270deg, rgb(226, 121, 243), rgb(240, 100, 179), rgb(78, 12, 62), rgb(120, 24, 110));
+      background-size: 400% 400%;
+      margin: 0;
+      padding: 0;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #role-selection, #login, #job-seeker-dashboard, #recruiter-dashboard {
+      background: white;
+      padding: 20px;
+      margin: 50px auto;
+      width: 50%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    button {
+      display: block;
+      width: 80%;
+      margin: 10px auto;
+      padding: 10px;
+      background-color: #3c073a;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #541560;
+    }
+
+    input {
+      display: block;
+      width: 80%;
+      margin: 10px auto;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <link rel="icon" href="C:\Users\Belar\Downloads" type="image/png">
+
+  <div id="role-selection">
+    <h1>Êtes-vous un recruteur ou un chercheur de stage ?</h1>
+    <button onclick="selectRole('job-seeker')">Chercheur de stage</button>
+    <button onclick="selectRole('recruiter')">Recruteur</button>
+  </div>
+    
+ 
+  <div id="login" class="hidden">
+    <h2>Connexion</h2>
+    <input type="text" id="name" placeholder="Nom">
+    <input type="text" id="surname" placeholder="Prénom">
+    <input type="email" id="email" placeholder="Email">
+    <input type="tel" id="phone" placeholder="Numéro de téléphone">
+    <input type="password" id="password" placeholder="Mot de passe">
+    <button onclick="login()">Se connecter</button>
+    <button onclick="backToRoleSelection()">Retour</button>
+  </div>
+    
+  <div id="job-seeker-dashboard" class="hidden">
+    <h2>Tableau de Bord - Chercheur de Stage</h2>
+    <button onclick="uploadCV()">Mettre mon CV</button>
+    <button onclick="searchOffers()">Chercher des offres</button>
+    <button onclick="logout()">Déconnexion</button>
+  </div>
+    
+
+  <div id="recruiter-dashboard" class="hidden">
+    <h2>Tableau de Bord - Recruteur</h2>
+    <button onclick="viewCandidates()">Voir les CV des candidats</button>
+    <button onclick="postJob()">Publier une offre</button>
+    <button onclick="logout()">Déconnexion</button>
+  </div>
+    
+  <script>
+    function selectRole(role) {
+      document.getElementById('role-selection').classList.add('hidden');
+      document.getElementById('login').classList.remove('hidden');
+      localStorage.setItem('userRole', role);
+    }
+
+   
+    function backToRoleSelection() {
+      document.getElementById('login').classList.add('hidden');
+      document.getElementById('role-selection').classList.remove('hidden');
+    }
+
+    function login() {
+      let role = localStorage.getItem('userRole');
+      document.getElementById('login').classList.add('hidden');
+      if (role === 'job-seeker') {
+        document.getElementById('job-seeker-dashboard').classList.remove('hidden');
+      } else if (role === 'recruiter') {
+        document.getElementById('recruiter-dashboard').classList.remove('hidden');
+      }
+    }
+
+
+    function logout() {
+      localStorage.removeItem('userRole');
+      document.getElementById('job-seeker-dashboard').classList.add('hidden');
+      document.getElementById('recruiter-dashboard').classList.add('hidden');
+      document.getElementById('role-selection').classList.remove('hidden');
+    }
+
+    function uploadCV() {
+      alert("Fonctionnalité de mise en ligne de CV en cours de développement.");
+    }
+
+    function searchOffers() {
+      alert("Recherche d'offres en cours de développement.");
+    }
+
+    function viewCandidates() {
+      alert("Affichage des candidats en cours de développement.");
+    }
+
+    function postJob() {
+      alert("Publication d'offres en cours de développement.");
+    }
+  </script>
+</body>
+</html>
+
